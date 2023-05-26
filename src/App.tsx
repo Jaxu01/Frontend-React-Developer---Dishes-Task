@@ -6,71 +6,96 @@ function App() {
   const [formResponse, setFormResponse] = useState({})
   console.log(dish)
 
-  async function postData(data) {
+  const postData = async(data) => {
     const url = "https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/"
+    console.log(JSON.stringify(data))
     
     const response = await fetch(url, {
-      method: "POST"
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
-      }
+      },
       body: JSON.stringify(data)
     })
     
     return response.json()
   }
 
-  const sendData = (event) => {
+  const formatNumbers = (data: object) => {
+    for (const property in data) {
+      const value = data[property]
+      const valueNumber = Number(value)
+      const isNumber = !!valueNumber
+      const isFloat = isNumber && value.includes(".")
+      if (isFloat) {
+        console.log(valueNumber)
+        data[property] = valueNumber
+        console.log(data, property)
+      } else if (isNumber) {
+        data[property] = valueNumber
+      }
+      console.log(isNumber, property, value, isFloat)
+    }
+    return data
+  }
+
+  const sendData = async(event: Event) => {
     const formElement = event.target
     event.preventDefault()
     const formData = new FormData(formElement)
     const formObject = Object.fromEntries(formData)
-    const response = await postData(formObject)
+    const formatedData = formatNumbers(formObject)
+    const response = await postData(formatedData)
     setFormResponse(response)
   }
   
   return (
-    <form onSubmit={sendData}>
-      <h1>Dishes Task</h1>
-      <fieldset>
-        <label className="inputBox">Dish Name
-          <input type="text" name="name" placeholder="what dish?" required={true}/>
-        </label>
-      </fieldset>
-      <fieldset>
-        <label className="inputBox">Preparation Time</label>
-          <input name="preparation_time" type="time" step="2" required={true}/>
-      </fieldset>
-      <label className="selectBox">Select a Dish
-        <div className="dish-selection">
-          <select onChange={({target}) => setDish(target.value)}>
-            <option hidden> -- Select an Option -- </option>
-            <option>Pizza</option>
-            <option>Soup</option>
-            <option>Sandwich</option>
-          </select>
-        </div>
-        {dish === "Pizza" && (
-          <div className="pizza-choices">
-            <input className="no-of-slices" placeholder="number of slices" type="number"/>
-            <input className="diameter" placeholder="diameter of the pizza" step="0.01" type="number"/>
+    <>
+      <form onSubmit={sendData}>
+        <h1>Dishes Task</h1>
+        <fieldset>
+          <label className="inputBox">Dish Name
+            <input type="text" name="name" placeholder="what dish?" required={true}/>
+          </label>
+        </fieldset>
+        <fieldset>
+          <label className="inputBox">Preparation Time</label>
+            <input name="preparation_time" type="time" step="1" required={true}/>
+        </fieldset>
+        <label className="selectBox">Select a Dish
+          <div className="dish-selection">
+            <select name="type" onChange={({target}) => setDish(target.value)}>
+              <option hidden> -- Select an Option -- </option>
+              <option>pizza</option>
+              <option>soup</option>
+              <option>sandwich</option>
+            </select>
           </div>
-        )}
-        {dish === "Soup" && (
-        <div className="soup-choices">
-          <input className="spiciness-scale" placeholder="spiciness scale" min="1" max="10" type="number"/>
+          {dish === "pizza" && (
+            <div className="pizza-choices">
+              <input name="no-of-slices" placeholder="number of slices" type="number"/>
+              <input name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number"/>
+            </div>
+          )}
+          {dish === "soup" && (
+          <div className="soup-choices">
+            <input name="spiciness-scale" placeholder="spiciness scale" min="1" max="10" type="number"/>
+          </div>
+          )}
+          {dish === "sandwich" && (
+          <div className="sandwich-choices">
+            <input name="slices-of-bread" placeholder="slices of bread" type="number"/>
+          </div>
+          )}
+        </label>
+        <div className="inputBox">
+          <input type="submit" name="" value="Send"/>
         </div>
-        )}
-        {dish === "Sandwich" && (
-        <div className="sandwich-choices">
-          <input className="slices-of-bread" placeholder="slices of bread" type="number"/>
-        </div>
-        )}
-      </label>
-      <div className="inputBox">
-        <input type="submit" name="" value="Send"/>
-      </div>
-    </form>
+      </form>
+      {formResponse && (
+        <div></div>
+      )}
+    </>
   )
 }
 
