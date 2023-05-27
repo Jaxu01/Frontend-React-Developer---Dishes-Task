@@ -6,8 +6,9 @@ function App() {
   const [formResponse, setFormResponse] = useState({})
   console.log(dish)
 
-  const postData = async(data) => {
+  const postData = async(data: object) => {
     const url = "https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/"
+    console.log('{"name":"HexOcean pizza", "preparation_time": "01:30:22", "type": "pizza","no_of_slices": 4, "diameter": 33.4}')
     console.log(JSON.stringify(data))
     
     const response = await fetch(url, {
@@ -51,17 +52,9 @@ function App() {
   
   return (
     <>
-      <form onSubmit={sendData}>
-        <h1>Dishes Task</h1>
-        <fieldset>
-          <label className="inputBox">Dish Name</label>
-            <input className="dish-name" type="text" name="name" placeholder="what dish?" required={true}/>
-        </fieldset>
-        <fieldset>
-          <label className="inputBox">Preparation Time</label>
-            <input className="prep-time" name="preparation_time" type="time" step="1" required={true}/>
-        </fieldset>
-        <label className="selectBox">Select a Dish
+      <h1>Dishes Task</h1>
+      <form className="paper" onSubmit={sendData}>
+        <label className="selectBox">Select a Dish</label>
           <div className="dish-selection">
             <select name="type" onChange={({target}) => setDish(target.value)}>
               <option hidden> -- Select an Option -- </option>
@@ -70,9 +63,18 @@ function App() {
               <option>sandwich</option>
             </select>
           </div>
+          <div className="wrapper">
+          <fieldset>
+            <label className="inputBox">Dish Name</label>
+              <input className="dish-name" type="text" name="name" placeholder="what dish?" required={true}/>
+          </fieldset>
+          <fieldset>
+            <label className="inputBox">Preparation Time</label>
+              <input className="prep-time" name="preparation_time" type="time" step="1" required={true}/>
+          </fieldset>
           {dish === "pizza" && (
             <div className="pizza-choices">
-              <input className="slices" name="no-of-slices" placeholder="number of slices" type="number"/>
+              <input className="slices" name="no_of_slices" placeholder="number of slices" type="number"/>
               <input className="diameter" name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number"/>
             </div>
           )}
@@ -86,9 +88,9 @@ function App() {
             <input className="bread-slices" name="slices-of-bread" placeholder="slices of bread" type="number"/>
           </div>
           )}
-        </label>
         <div className="button">
           <input type="submit" name="" value="Send"/>
+        </div>
         </div>
       </form>
       {formResponse && (
