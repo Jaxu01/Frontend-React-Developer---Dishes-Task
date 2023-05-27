@@ -54,13 +54,12 @@ function App() {
       <form onSubmit={sendData}>
         <h1>Dishes Task</h1>
         <fieldset>
-          <label className="inputBox">Dish Name
-            <input type="text" name="name" placeholder="what dish?" required={true}/>
-          </label>
+          <label className="inputBox">Dish Name</label>
+            <input className="dish-name" type="text" name="name" placeholder="what dish?" required={true}/>
         </fieldset>
         <fieldset>
           <label className="inputBox">Preparation Time</label>
-            <input name="preparation_time" type="time" step="1" required={true}/>
+            <input className="prep-time" name="preparation_time" type="time" step="1" required={true}/>
         </fieldset>
         <label className="selectBox">Select a Dish
           <div className="dish-selection">
@@ -73,22 +72,22 @@ function App() {
           </div>
           {dish === "pizza" && (
             <div className="pizza-choices">
-              <input name="no-of-slices" placeholder="number of slices" type="number"/>
-              <input name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number"/>
+              <input className="slices" name="no-of-slices" placeholder="number of slices" type="number"/>
+              <input className="diameter" name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number"/>
             </div>
           )}
           {dish === "soup" && (
           <div className="soup-choices">
-            <input name="spiciness-scale" placeholder="spiciness scale" min="1" max="10" type="number"/>
+            <input className="spice-scale" name="spiciness-scale" placeholder="spiciness scale" min="1" max="10" type="number"/>
           </div>
           )}
           {dish === "sandwich" && (
           <div className="sandwich-choices">
-            <input name="slices-of-bread" placeholder="slices of bread" type="number"/>
+            <input className="bread-slices" name="slices-of-bread" placeholder="slices of bread" type="number"/>
           </div>
           )}
         </label>
-        <div className="inputBox">
+        <div className="button">
           <input type="submit" name="" value="Send"/>
         </div>
       </form>
