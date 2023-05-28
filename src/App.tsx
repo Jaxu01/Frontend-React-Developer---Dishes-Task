@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import './App.css'
 
 function App() {
@@ -35,10 +35,10 @@ function App() {
     return data
   }
 
-  const sendData = async({target, preventDefault}: Event) => {
-    const formElement:HTMLFormElement = target
-    preventDefault()
-    if (formElement) {
+  const sendData = async(event: FormEvent) => {
+    if (event.target instanceof HTMLFormElement) {
+      const formElement:HTMLFormElement = event.target
+      event.preventDefault()
       const formData = new FormData(formElement)
       const formObject = Object.fromEntries(formData)
       const formatedData = formatNumbers(formObject)
