@@ -41,13 +41,15 @@ function App() {
   }
 
   const sendData = async(event: Event) => {
-    const formElement = event.target
+    const formElement:EventTarget|null = event.target
     event.preventDefault()
-    const formData = new FormData(formElement)
-    const formObject = Object.fromEntries(formData)
-    const formatedData = formatNumbers(formObject)
-    const response = await postData(formatedData)
-    setFormResponse(response)
+    if (formElement) {
+      const formData = new FormData(formElement)
+      const formObject = Object.fromEntries(formData)
+      const formatedData = formatNumbers(formObject)
+      const response = await postData(formatedData)
+      setFormResponse(response)
+    }
   }
   
   return (
