@@ -32,7 +32,7 @@ body {
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 20px;
 }
 
 fieldset {
@@ -42,14 +42,13 @@ fieldset {
   text-align: left;
 }
 
-.dish-name {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 200px;
+.dish-name,
+.prep-time {
+  box-sizing: border-box;
+  width: 100%;
   height: 30px;
   margin: 0;
-  padding: 0;
+  padding: 2px 4px;
 }
 
 input {
@@ -61,13 +60,9 @@ input {
 
 .inputBox {
   color: var(--main-blue);
-  font-size: 20px;
-}
-
-.prep-time {
-  padding: 0;
-  width: 200px;
-  height: 30px;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
 }
 
 h1 {
@@ -97,28 +92,20 @@ select {
   border-radius: 5px;
   background-color: #fff;
   color: #242424;
-  width: 200px;
+  width: 240px;
   height: 30px;
-}
-
-.pizza-choices,
-.soup-choices,
-.sandwich-choices {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  grid-area: span 2/ span 3;
 }
 
 .slices,
 .diameter,
 .spice-scale,
 .bread-slices {
+  box-sizing: border-box;
   color: #242424;
-  width: 200px;
+  width: 100%;
   height: 30px;
-  padding: 0;
+  padding: 2px 4px;
+  margin: 0;
 }
 
 .button {
