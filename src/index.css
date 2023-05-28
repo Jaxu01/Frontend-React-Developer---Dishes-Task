@@ -46,8 +46,8 @@ fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150px;
-  height: 25px;
+  width: 200px;
+  height: 30px;
   margin: 0;
   padding: 0;
 }
@@ -60,14 +60,14 @@ input {
 }
 
 .inputBox {
-  color: var(--main-grey);
+  color: var(--main-blue);
   font-size: 20px;
 }
 
 .prep-time {
   padding: 0;
-  width: 150px;
-  height: 25px;
+  width: 200px;
+  height: 30px;
 }
 
 h1 {
@@ -87,7 +87,7 @@ h1 {
 .selectBox {
   display: flex;
   flex-direction: column;
-  color: var(--main-grey);
+  color: var(--main-blue);
   font-size: 20px;
   text-align: center;
 }
@@ -97,8 +97,8 @@ select {
   border-radius: 5px;
   background-color: #fff;
   color: #242424;
-  width: 150px;
-  height: 25px;
+  width: 200px;
+  height: 30px;
 }
 
 .pizza-choices,
@@ -108,14 +108,7 @@ select {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-}
-
-.slices {
-  margin-bottom: 10px;
-}
-
-.diameter {
-  margin-top: 10px;
+  grid-area: span 2/ span 3;
 }
 
 .slices,
@@ -123,8 +116,8 @@ select {
 .spice-scale,
 .bread-slices {
   color: #242424;
-  width: 150px;
-  height: 25px;
+  width: 200px;
+  height: 30px;
   padding: 0;
 }
 
@@ -139,6 +132,7 @@ select {
   outline: none;
   color: #fff;
   border: none;
+  padding: 0;
   font-size: 30px;
   font-weight: 500;
   border-radius: 5px;

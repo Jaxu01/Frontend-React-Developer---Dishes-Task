@@ -74,17 +74,21 @@ function App() {
           </fieldset>
           {dish === "pizza" && (
             <div className="pizza-choices">
+              <label className="inputBox">How many slices?</label>
               <input className="slices" name="no_of_slices" placeholder="number of slices" type="number"/>
+              <label className="inputBox">What is the diameter?</label>
               <input className="diameter" name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number"/>
             </div>
           )}
           {dish === "soup" && (
           <div className="soup-choices">
+            <label className="inputBox">How spicy is it?</label>
             <input className="spice-scale" name="spiciness-scale" placeholder="spiciness scale" min="1" max="10" type="number"/>
           </div>
           )}
           {dish === "sandwich" && (
           <div className="sandwich-choices">
+            <label className="inputBox">How many slices?</label>
             <input className="bread-slices" name="slices-of-bread" placeholder="slices of bread" type="number"/>
           </div>
           )}
