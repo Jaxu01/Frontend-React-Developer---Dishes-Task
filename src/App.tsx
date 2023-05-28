@@ -3,13 +3,10 @@ import './App.css'
 
 function App() {
   const [dish, setDish] = useState<string>("")
-  const [formResponse, setFormResponse] = useState({})
-  console.log(dish)
+  const [formResponse, setFormResponse] = useState<object>({})
 
   const postData = async(data: object) => {
     const url = "https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/"
-    console.log('{"name":"HexOcean pizza", "preparation_time": "01:30:22", "type": "pizza","no_of_slices": 4, "diameter": 33.4}')
-    console.log(JSON.stringify(data))
     
     const response = await fetch(url, {
       method: "POST",
@@ -31,18 +28,16 @@ function App() {
       if (isFloat) {
         console.log(valueNumber)
         data[property] = valueNumber
-        console.log(data, property)
       } else if (isNumber) {
         data[property] = valueNumber
       }
-      console.log(isNumber, property, value, isFloat)
     }
     return data
   }
 
-  const sendData = async(event: Event) => {
-    const formElement:EventTarget|null = event.target
-    event.preventDefault()
+  const sendData = async({target, preventDefault}: Event) => {
+    const formElement:HTMLFormElement = target
+    preventDefault()
     if (formElement) {
       const formData = new FormData(formElement)
       const formObject = Object.fromEntries(formData)
