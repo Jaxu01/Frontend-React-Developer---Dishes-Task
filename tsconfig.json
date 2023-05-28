@@ -7,9 +7,11 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
+    "noEmit": true,
+    "noEmitOnError": false,
     "jsx": "react-jsx",
 
     /* Linting */
