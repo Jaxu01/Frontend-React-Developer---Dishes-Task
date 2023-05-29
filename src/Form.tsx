@@ -45,9 +45,9 @@ const Form = ({setFormResponse}) => {
     }
     return (
         <form onSubmit={sendData}>
-        <label className="selectBox">Select a Dish</label>
+          <label className="select-label">Select a Dish</label>
           <div className="dish-selection">
-            <select name="type" onChange={({target}) => setDish(target.value)}>
+            <select className="input-class" name="type" onChange={({target}) => setDish(target.value)}>
               <option hidden> -- Select an Option -- </option>
               <option>pizza</option>
               <option>soup</option>
@@ -56,35 +56,35 @@ const Form = ({setFormResponse}) => {
           </div>
           <div className="wrapper">
           <fieldset>
-            <label className="inputBox">Dish Name</label>
-              <input className="dish-name" type="text" name="name" placeholder="what dish?" required={true}/>
+            <label className="input-label">Dish Name</label>
+              <input className="dish-name input-class" type="text" name="name" placeholder="what dish?" required={true}/>
           </fieldset>
           <fieldset>
-            <label className="inputBox">Preparation Time</label>
-              <input className="prep-time" name="preparation_time" type="time" step="1" required={true}/>
+            <label className="input-label">Preparation Time</label>
+              <input className="prep-time input-class" name="preparation_time" type="time" step="1" required={true}/>
           </fieldset>
           {dish === "pizza" && (
             <>
               <fieldset className="pizza-choices">
-                <label className="inputBox">How many slices?</label>
-                <input className="slices" name="no_of_slices" placeholder="number of slices" type="number" required={true}/>
+                <label className="input-label">How many slices?</label>
+                <input className="slices input-class" name="no_of_slices" placeholder="number of slices" type="number" required={true}/>
               </fieldset>
               <fieldset className="pizza-choices">
-                <label className="inputBox">What is the diameter?</label>
-                <input className="diameter" name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number" required={true}/>
+                <label className="input-label">What is the diameter?</label>
+                <input className="diameter input-class" name="diameter" onBlur={({target}) => target.value = Number(target.value).toFixed(1)} min="0" placeholder="diameter of the pizza" step="0.1" type="number" required={true}/>
               </fieldset>
             </>
           )}
           {dish === "soup" && (
           <div className="soup-choices">
-            <label className="inputBox">How spicy is it?</label>
-            <input className="spice-scale" name="spiciness_scale" placeholder="spiciness scale" min="1" max="10" type="number" required={true}/>
+            <label className="input-label">How spicy is it?</label>
+            <input className="spice-scale input-class" name="spiciness_scale" placeholder="spiciness scale" min="1" max="10" type="number" required={true}/>
           </div>
           )}
           {dish === "sandwich" && (
           <div className="sandwich-choices">
-            <label className="inputBox">How many slices?</label>
-            <input className="bread-slices" name="slices_of_bread" placeholder="slices of bread" type="number" required={true}/>
+            <label className="input-label">How many slices?</label>
+            <input className="bread-slices input-class" name="slices_of_bread" placeholder="slices of bread" type="number" required={true}/>
           </div>
           )}
         <div className="button">

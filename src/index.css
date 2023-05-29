@@ -1,17 +1,15 @@
 :root {
-  --main-blue: #71b7e6;
-  --main-purple: #9b59b6;
-  --main-grey: #ccc;
-  --sub-grey: #d9d9d9;
+  --label-color: #71b7e6;
+  --main-gradient: #9b59b6;
+  --text-color: #242424;
+  --background-color: #ffff;
 }
 
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  margin: 0 auto;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
   margin: 0;
   border: 0;
   display: flex;
@@ -19,11 +17,11 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
+  background: linear-gradient(135deg, var(--label-color), var(--main-gradient));
 }
 
 .paper {
-  background-color: #fff;
+  background-color: var(--background-color);
   width: 500px;
   border-radius: 5px;
   padding: 50px;
@@ -32,7 +30,7 @@ body {
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 40px;
 }
 
 fieldset {
@@ -45,28 +43,29 @@ fieldset {
 .dish-name,
 .prep-time {
   box-sizing: border-box;
-  width: 100%;
-  height: 30px;
+  color: var(--text-color);
   margin: 0;
-  padding: 2px 4px;
 }
 
 input {
   border: 1px solid grey;
   border-radius: 5px;
-  background-color: #fff;
-  color: #242424;
+  background-color: var(--background-color);
 }
 
-.inputBox {
-  color: var(--main-blue);
-  font-size: 16px;
+.input-class {
+  width: 100%;
+  height: 45px;
   display: block;
-  margin-bottom: 4px;
+  padding: 2px 8px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
 }
 
 h1 {
-  color: #fff;
+  color: var(--background-color);
   font-size: 60px;
   margin: 20px;
   text-align: center;
@@ -79,21 +78,19 @@ h1 {
   margin-bottom: 30px;
 }
 
-.selectBox {
-  display: flex;
-  flex-direction: column;
-  color: var(--main-blue);
+.select-label,
+.input-label {
+  color: var(--label-color);
   font-size: 20px;
-  text-align: center;
+  display: block;
+  margin-bottom: 8px;
 }
 
 select {
   border: 1px solid grey;
   border-radius: 5px;
-  background-color: #fff;
-  color: #242424;
-  width: 240px;
-  height: 30px;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .slices,
@@ -101,10 +98,7 @@ select {
 .spice-scale,
 .bread-slices {
   box-sizing: border-box;
-  color: #242424;
-  width: 100%;
-  height: 30px;
-  padding: 2px 4px;
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -117,13 +111,13 @@ select {
   height: 100%;
   width: 100%;
   outline: none;
-  color: #fff;
+  color: var(--background-color);
   border: none;
   padding: 0;
   font-size: 30px;
   font-weight: 500;
   border-radius: 5px;
-  background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
+  background: linear-gradient(135deg, var(--label-color), var(--main-gradient));
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -133,24 +127,22 @@ select {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  color: var(--main-purple);
+  color: var(--main-gradient);
   font-size: 30px;
   gap: 20px;
 }
 
 .send-another {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
-  font-size: 48px;
+  height: 45px;
+  width: 100%;
+  outline: none;
+  color: var(--background-color);
   border: none;
-  border-radius: 5px;
-  margin: 0;
   padding: 0;
-  width: 75%;
-  height: 100%;
+  font-size: 30px;
+  font-weight: 500;
+  border-radius: 5px;
+  background: linear-gradient(135deg, var(--label-color), var(--main-gradient));
   cursor: pointer;
 }
 
@@ -159,7 +151,7 @@ select {
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: var(--main-blue);
+  stroke: var(--label-color);
   fill: none;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
@@ -170,9 +162,9 @@ select {
   border-radius: 50%;
   display: block;
   stroke-width: 2;
-  stroke: #fff;
+  stroke: var(--background-color);
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px var(--main-blue);
+  box-shadow: inset 0px 0px 0px var(--label-color);
   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
 
@@ -198,6 +190,6 @@ select {
 }
 @keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px var(--main-blue);
+    box-shadow: inset 0px 0px 0px 30px var(--label-color);
   }
 }
