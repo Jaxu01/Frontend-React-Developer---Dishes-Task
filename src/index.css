@@ -180,6 +180,7 @@ select {
     stroke-dashoffset: 0;
   }
 }
+
 @keyframes scale {
   0%, 100% {
     transform: none;
@@ -188,6 +189,7 @@ select {
     transform: scale3d(1.1, 1.1, 1);
   }
 }
+
 @keyframes fill {
   100% {
     box-shadow: inset 0px 0px 0px 30px var(--label-color);
